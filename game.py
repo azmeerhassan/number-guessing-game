@@ -1,5 +1,3 @@
-# game.py
-
 import random
 
 def print_welcome():
@@ -15,7 +13,6 @@ def print_welcome():
 def get_attempts_by_difficulty():
     while True:
         choice = input("Enter your choice (1/2/3): ").strip()
-
         if choice == "1":
             print("\n🟢 Easy mode selected — You get 10 chances!\n")
             return 10
@@ -28,10 +25,34 @@ def get_attempts_by_difficulty():
         else:
             print("❌ Invalid input. Please enter 1, 2, or 3.")
 
+def play_game():
+    number_to_guess = random.randint(1, 100)
+    attempts_left = get_attempts_by_difficulty()
+    attempt_count = 0
 
+    while attempts_left > 0:
+        try:
+            guess = int(input(f"🎯 Attempt {attempt_count + 1}: Enter your guess: "))
+        except ValueError:
+            print("❌ Please enter a valid number.")
+            continue
+
+        attempt_count += 1
+
+        if guess == number_to_guess:
+            print(f"🎉 Congratulations! You guessed the correct number in {attempt_count} attempts.")
+            return
+        elif guess < number_to_guess:
+            print("📉 The number is **greater** than your guess.\n")
+        else:
+            print("📈 The number is **less** than your guess.\n")
+
+        attempts_left -= 1
+        if attempts_left == 0:
+            print(f"❌ You've run out of attempts. The correct number was {number_to_guess}.")
+        else:
+            print(f"⏳ Attempts remaining: {attempts_left}\n")
+
+# Run the game
 print_welcome()
-attempts = get_attempts_by_difficulty()
-print(f"🎯 You will have {attempts} attempts to guess the number.\n")
-
-
-
+play_game()
