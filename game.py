@@ -53,6 +53,19 @@ def play_game():
         else:
             print(f"⏳ Attempts remaining: {attempts_left}\n")
 
-# Run the game
-print_welcome()
-play_game()
+def main():
+    while True:
+        print_welcome()
+        play_game()
+
+        play_again = input("🔁 Do you want to play again? (yes/no): ").strip().lower()
+        if play_again not in ['yes', 'y']:
+            print("👋 Thanks for playing! See you next time.")
+            break
+        print("\n" + "="*50 + "\n")  # Separator between games
+
+if __name__ == "__main__":
+    main()
+
+
+
