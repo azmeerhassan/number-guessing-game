@@ -57,7 +57,7 @@ def main():
     while True:
         print_welcome()
         play_game()
-
+    
         play_again = input("🔁 Do you want to play again? (yes/no): ").strip().lower()
         if play_again not in ['yes', 'y']:
             print("👋 Thanks for playing! See you next time.")
